@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IRestaurantManageBll\IRestaurantManageBLL.csproj" />
+    <ProjectReference Include="..\IRestaurantManageDAL\IRestaurantManageDAL.csproj" />
+    <ProjectReference Include="..\RestaurantManageEntity\RestaurantManageEntity.csproj" />
+  </ItemGroup>
+
+</Project>
