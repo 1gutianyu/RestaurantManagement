@@ -1,0 +1,86 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    @*<link rel="stylesheet" href="../../lib/layui-v2.6.3/css/layui.css" media="all">*@
+    <link href="~/layuimini/lib/layui-v2.6.3/css/layui.css" rel="stylesheet" />
+    @*<link rel="stylesheet" href="../../css/public.css" media="all">*@
+    <link href="~/layuimini/css/public.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="layui-form layuimini-form">
+        <div class="layui-form-item">
+            <label class="layui-form-label required">桌号</label>
+            <div class="layui-input-block">
+                <input type="text" name="Name" value="" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认保存</button>
+            </div>
+        </div>
+    </div>
+    @*<script src="../../lib/layui-v2.6.3/layui.js" charset="utf-8"></script>*@
+    <script src="~/layuimini/lib/layui-v2.6.3/layui.js"></script>
+
+    <script>
+        //页面加载完才执行里面的js代码
+        layui.use(['form'], function () {
+            var form = layui.form,
+                layer = layui.layer,
+                $ = layui.$;
+
+
+            //监听提交
+            form.on('submit(saveBtn)', function (data) {
+
+                console.log(data.field);
+                //异步请求添加工作流模板
+                $.ajax({
+                    url: '/MealInfo/AddMealInfo',
+                    data: data.field,
+                    type: 'post',
+                    success: function (res) {
+                        console.log(res);
+                        if (res.isSuccess) {
+                            var index = layer.alert("添加成功", {
+                                title: '提示'
+                            }, function () {
+
+                                // 关闭弹出层
+                                layer.close(index);
+                                var iframeIndex = parent.layer.getFrameIndex(window.name);
+                                parent.layer.close(iframeIndex);
+
+                                //刷新表格数据
+                                parent.reLoadTable();
+                            });
+                        } else {
+                            layer.msg(res.msg);
+                        }
+                    }
+                });
+
+                return false;
+            });
+
+        });
+
+    </script>
+</body>
+</html>

@@ -18,6 +18,10 @@ namespace RestaurantManagement.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// 首页
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Index()
         {
             return View();

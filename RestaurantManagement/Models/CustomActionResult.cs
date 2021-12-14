@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RepositorySystem.Models
+namespace RestaurantManagement.Models
 {
     public class CustomActionResult
     {

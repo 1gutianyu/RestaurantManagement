@@ -3,17 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantManagement", "RestaurantManagement\RestaurantManagement.csproj", "{C4B6C6C4-6605-49B6-90FE-F44FFF52C9D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestaurantManagement", "RestaurantManagement\RestaurantManagement.csproj", "{C4B6C6C4-6605-49B6-90FE-F44FFF52C9D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRestaurantManageBLL", "IRestaurantManageBll\IRestaurantManageBLL.csproj", "{99AC3A33-4CDF-4F2D-A841-90107446A948}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IRestaurantManageBLL", "IRestaurantManageBll\IRestaurantManageBLL.csproj", "{99AC3A33-4CDF-4F2D-A841-90107446A948}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantManageBLL", "RestaurantManageBll\RestaurantManageBLL.csproj", "{03EDE4F2-7323-4F1B-8220-5DC0A6B14FB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestaurantManageBLL", "RestaurantManageBll\RestaurantManageBLL.csproj", "{03EDE4F2-7323-4F1B-8220-5DC0A6B14FB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRestaurantManageDAL", "IRestaurantManageDAL\IRestaurantManageDAL.csproj", "{A4E020C2-CAE5-4FFD-84DB-56547D0DC985}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IRestaurantManageDAL", "IRestaurantManageDAL\IRestaurantManageDAL.csproj", "{A4E020C2-CAE5-4FFD-84DB-56547D0DC985}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantManageDAL", "RestaurantManageDAL\RestaurantManageDAL.csproj", "{C463A33E-284A-4F48-B3B6-D2A4A5D95B37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestaurantManageDAL", "RestaurantManageDAL\RestaurantManageDAL.csproj", "{C463A33E-284A-4F48-B3B6-D2A4A5D95B37}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantManageEntity", "RestaurantManageEntity\RestaurantManageEntity.csproj", "{E6976BDA-8E76-4F37-ABBE-CB1476E6AB28}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestaurantManageEntity", "RestaurantManageEntity\RestaurantManageEntity.csproj", "{E6976BDA-8E76-4F37-ABBE-CB1476E6AB28}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantManageCommon", "RestaurantManageCommon\RestaurantManageCommon.csproj", "{943B64B8-B6A7-421B-9EED-41E7F3E52687}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{E6976BDA-8E76-4F37-ABBE-CB1476E6AB28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E6976BDA-8E76-4F37-ABBE-CB1476E6AB28}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E6976BDA-8E76-4F37-ABBE-CB1476E6AB28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{943B64B8-B6A7-421B-9EED-41E7F3E52687}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{943B64B8-B6A7-421B-9EED-41E7F3E52687}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{943B64B8-B6A7-421B-9EED-41E7F3E52687}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{943B64B8-B6A7-421B-9EED-41E7F3E52687}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

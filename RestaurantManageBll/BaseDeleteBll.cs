@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RestaurantManageBLL
 {
-    public class BaseDeleteBll<T> :BaseBll<T> where T:BaseDeleteEntity
+    public class BaseDeleteBll<T> : BaseBll<T> where T : BaseDeleteEntity
     {
         private IBaseDal<T> _baseDal;
         public BaseDeleteBll(IBaseDal<T> baseDal) : base(baseDal)
@@ -53,5 +53,19 @@ namespace RestaurantManageBLL
             }
             _baseDal.UpdateDatas(deleteDatas);
         }
+
+        /// <summary>
+        /// 获取下拉列表数据(有删除字段)
+        /// </summary>
+        /// <returns></returns>
+        //public object GetDeleteSelectOptions()
+        //{
+        //    var entityDatas = _baseDal.GetEntityListDb().Where(e => !e.IsDelete).Select(e => new
+        //    {
+        //        e.ID,
+        //        e.Name
+        //    }).ToList();
+        //    return entityDatas;
+        //}
     }
 }

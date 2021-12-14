@@ -20,5 +20,11 @@ namespace IRestaurantManageBLL
         /// </summary>
         /// <param name="Ids"></param>
         void SoftDeleteDatas(List<string> Ids);
+
+        /// <summary>
+        /// 获取下拉列表数据(有删除字段)
+        /// </summary>
+        /// <returns></returns>
+        //object GetDeleteSelectOptions();
     }
 }

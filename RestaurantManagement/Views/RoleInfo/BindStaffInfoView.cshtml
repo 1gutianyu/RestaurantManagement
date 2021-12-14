@@ -1,0 +1,107 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    @*<link rel="stylesheet" href="../../lib/layui-v2.6.3/css/layui.css" media="all">*@
+    <link href="~/layuimini/lib/layui-v2.6.3/css/layui.css" rel="stylesheet" />
+    @*<link rel="stylesheet" href="../../css/public.css" media="all">*@
+    <link href="~/layuimini/css/public.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div id="test4" class="demo-transfer"></div>
+
+    <div>
+        <button class="layui-btn layui-btn-normal" id="saveBtn">确认保存</button>
+    </div>
+
+    @*<script src="../../lib/layui-v2.6.3/layui.js" charset="utf-8"></script>*@
+    <script src="~/layuimini/lib/layui-v2.6.3/layui.js"></script>
+    <script>
+        layui.use(['form'], function () {
+            var form = layui.form,
+                transfer = layui.transfer,
+                layer = layui.layer,
+                $ = layui.$;
+
+
+            //获取备选用户数据
+            $.ajax({
+                url: '/RoleInfo/GetBindStaffInfo',
+                type: 'get',
+                data:
+                {
+                    roleInfoId: parent.roleInfoId
+                },
+                success: function (res) {
+                    var data = [];
+                    for (var i = 0; i < res.datas.staffInfoOptions.length; i++) {
+                        data.push({ "value": res.datas.staffInfoOptions[i].id, "title": res.datas.staffInfoOptions[i].name });
+                    }
+
+                    //显示搜索框
+                    transfer.render({
+                        elem: '#test4'
+                        , data: data
+                        , title: ['未绑定', '已绑定']
+                        , showSearch: true
+                        , id: 'demo1'//定义索引
+                        , value: res.datas.staffInfoIds
+                    })
+                }
+            });
+
+
+            //监听提交
+            $('#saveBtn').click(function () {
+                //判断角色id是否存在
+                if (parent.roleInfoId) {
+                    //获得右侧数据
+                    var getData = transfer.getData('demo1');
+                    console.log(getData);
+                    console.log(parent.roleInfoId);
+
+                    //获取选择的员工id数组
+                    var staffInfoIds = [];
+                    for (var i = 0; i < getData.length; i++) {
+                        staffInfoIds.push(getData[i].value);
+                    }
+
+                    console.log(staffInfoIds);
+
+                    //发起异步请求提交绑定的数据
+                    $.ajax({
+                        url: '/RoleInfo/BindStaffInfo',
+                        type: 'post',
+                        data: {
+                            roleInfoId: parent.roleInfoId,
+                            staffInfoIds: staffInfoIds
+                        },
+                        success: function (res) {
+                            layer.msg(res.msg);
+                        }
+                    });
+                } else {
+                    layer.msg('数据有误');
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>
+

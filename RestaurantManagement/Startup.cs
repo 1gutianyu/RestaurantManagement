@@ -3,11 +3,13 @@ using IRestaurantManageDAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RestaurantManageBLL;
 using RestaurantManageDAL;
+using RestaurantManageEntity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,12 +30,28 @@ namespace RestaurantManagement
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            //注册session
+            services.AddSession();
+
+            //注入上下文类对象
+            services.AddDbContext<ManegeDbContext>(options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
 
             //配置Dal
             services.AddScoped<IDepartmentInfoDal, DepartmentInfoDal>();
+            services.AddScoped<IRoleInfoDal, RoleInfoDal>();
+            services.AddScoped<IStaffInfoDal, StaffInfoDal>();
+            services.AddScoped<IUserInfoDal, UserInfoDal>();
+            services.AddScoped<IStasff_RoleInfoDal, Stasff_RoleInfoDal>();
+            services.AddScoped<IMenuInfoDal, MenuInfoDal>();
+            services.AddScoped<IMenu_RoleInfoDal, Menu_RoleInfoDal>();
+
 
             //配置Bll
             services.AddScoped<IDepartmentInfoBll, DepartmentInfoBll>();
+            services.AddScoped<IRoleInfoBll, RoleInfoBll>();
+            services.AddScoped<IStaffInfoBll, StaffInfoBll>();
+            services.AddScoped<IUserInfoBll, UserInfoBll>();
+            services.AddScoped<IMenuInfoBll, MenuInfoBll>();
 
         }
 
@@ -56,6 +74,9 @@ namespace RestaurantManagement
             app.UseRouting();
 
             app.UseAuthorization();
+
+            //使用session
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

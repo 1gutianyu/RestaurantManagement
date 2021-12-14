@@ -1,6 +1,7 @@
-﻿using IRestaurantManageDAL;
+﻿using IRestaurantManageBLL;
+using IRestaurantManageDAL;
 using Microsoft.AspNetCore.Mvc;
-using RepositorySystem.Models;
+using RestaurantManagement.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,13 @@ namespace RestaurantManagement.Controllers
     public class DepartmentInfoController : Controller
     {
         //依赖注入
-        private IDepartmentInfoDal _departmentInfoDal;
-        public DepartmentInfoController(IDepartmentInfoDal departmentInfoDal)
+        private IDepartmentInfoBll _departmentInfoBll;
+        private IUserInfoBll _userInfoBll;
+
+        public DepartmentInfoController(IDepartmentInfoBll departmentInfoBll, IUserInfoBll userInfoBll)
         {
-            _departmentInfoDal = departmentInfoDal;
+            _departmentInfoBll = departmentInfoBll;
+            _userInfoBll = userInfoBll;
         }
 
 
@@ -29,13 +33,51 @@ namespace RestaurantManagement.Controllers
             return View();
         }
 
+
         /// <summary>
         /// 获取部门信息业务
         /// </summary>
+        /// <param name="page"></param>
+        /// <param name="limit"></param>
+        /// <param name="departmentName"></param>
+        /// <param name="description"></param>
         /// <returns></returns>
-        public IActionResult GetDepartmentInfoListPage()
+        public IActionResult GetDepartmentInfoListPage(int page, int limit, string departmentName, string description)
+        {
+            int count;
+            object departmentInfos = _departmentInfoBll.GetDepartmentInfoListPage(page, limit, out count, departmentName, description);
+
+            return Json(new
+            {
+                code = 0,
+                msg = "成功",
+                count = count,
+                data = departmentInfos
+            });
+        }
+
+        /// <summary>
+        /// 获取部门领导下拉列表数据
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult GetSelectOptions()
         {
             CustomActionResult res = new CustomActionResult();
+            //查询用户下拉列表数据
+            object userInfoOptions = _userInfoBll.GetUserSelectOptions();
+
+            //父级部门下拉列表数据
+            object departmentInfoOptions = _departmentInfoBll.GetDeparmentSelectOptions();
+
+            res.IsSuccess = true;
+            res.Msg = "成功";
+            res.Status = 1;
+            res.Datas = new
+            {
+                UserInfoOptions = userInfoOptions,
+                DepartmentInfoOptions = departmentInfoOptions
+            };
+
             return Json(res);
         }
 

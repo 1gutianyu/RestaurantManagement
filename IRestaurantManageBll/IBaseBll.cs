@@ -50,5 +50,10 @@ namespace IRestaurantManageBLL
         T GetSingleEntityData(string Id);
 
 
+        /// <summary>
+        /// 获取下拉列表数据
+        /// </summary>
+        /// <returns></returns>
+        //object GetSelectOptions();
     }
 }

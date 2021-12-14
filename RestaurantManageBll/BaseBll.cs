@@ -84,5 +84,18 @@ namespace RestaurantManageBll
             return _baseDal.GetEntityListDb().ToList();
         }
 
+        /// <summary>
+        /// 获取下拉列表数据(无删除字段)
+        /// </summary>
+        /// <returns></returns>
+        //public object GetSelectOptions()
+        //{
+        //    var entityDatas = _baseDal.GetEntityListDb().Select(e => new
+        //    {
+        //        e.ID,
+        //        e.Name
+        //    }).ToList();
+        //    return entityDatas;
+        //}
     }
 }
